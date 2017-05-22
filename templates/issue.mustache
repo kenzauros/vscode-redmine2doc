@@ -1,0 +1,18 @@
+{{subject}} (#{{id}})
+=====
+
+* Date: {{created_on}}
+* Status: {{status.name}}
+* Priority: {{priority.name}}
+* Category: {{category.name}}
+* Tracker: {{tracker.name}}
+* Author:  {{author.name}}
+
+{{{description}}}
+
+{{#journals}}{{#notes}}
+- - -
+### {{user.name}} ({{created_on}})
+
+{{{notes}}}
+{{/notes}}{{/journals}}

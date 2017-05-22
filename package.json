@@ -1,0 +1,87 @@
+{
+  "name": "redmine2doc",
+  "displayName": "Redmine2Doc",
+  "description": "Convert Redmine data to to a templated document",
+  "version": "0.0.1",
+  "publisher": "kenzauros",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenzauros/vscode-redmine2doc"
+  },
+  "engines": {
+    "vscode": "^1.12.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.convertIssue2Document"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.convertIssue2Document",
+        "category": "Redmine2Doc",
+        "title": "Convert Redmine Issue to a document."
+      }
+    ],
+    "configuration": {
+        "title": "Redmine2Doc Configuration",
+        "properties": {
+            "redmine2doc.redmineApiBaseUrl": {
+                "type": "string",
+                "default": "",
+                "description": "URL to Redmine REST API"
+            },
+            "redmine2doc.redmineApiKey": {
+                "type": "string",
+                "default": "e4a3d8b1a0c739c4f15ad3e597cdfd0bd974e8a3",
+                "description": "Redmine API Key to get data"
+            },
+            "redmine2doc.templateDir": {
+                "type": "string",
+                "default": "templates/",
+                "description": "Directory path to Mustache templates"
+            },
+            "redmine2doc.resultFileType": {
+                "type": "string",
+                "default": "markdown",
+                "description": "File type of the result document"
+            },
+            "redmine2doc.projectListApiLimit": {
+                "type": "number",
+                "default": 100,
+                "description": "Limit param for project list API"
+            },
+            "redmine2doc.issueListApiLimit": {
+                "type": "number",
+                "default": 100,
+                "description": "Limit param for issue list API"
+            },
+            "redmine2doc.issueOrderDirectionDesc": {
+                "type": "boolean",
+                "default": true,
+                "description": "Show issues in descending order"
+            }
+        }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0",
+    "mocha": "^2.3.3",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "mu2": "^0.5.21"
+  }
+}

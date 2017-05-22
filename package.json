@@ -2,7 +2,7 @@
   "name": "redmine2doc",
   "displayName": "Redmine2Doc",
   "description": "Convert Redmine data to to a templated document",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "kenzauros",
   "repository": {
     "type": "git",
@@ -27,44 +27,54 @@
       }
     ],
     "configuration": {
-        "title": "Redmine2Doc Configuration",
-        "properties": {
-            "redmine2doc.redmineApiBaseUrl": {
-                "type": "string",
-                "default": "",
-                "description": "URL to Redmine REST API"
-            },
-            "redmine2doc.redmineApiKey": {
-                "type": "string",
-                "default": "e4a3d8b1a0c739c4f15ad3e597cdfd0bd974e8a3",
-                "description": "Redmine API Key to get data"
-            },
-            "redmine2doc.templateDir": {
-                "type": "string",
-                "default": "templates/",
-                "description": "Directory path to Mustache templates"
-            },
-            "redmine2doc.resultFileType": {
-                "type": "string",
-                "default": "markdown",
-                "description": "File type of the result document"
-            },
-            "redmine2doc.projectListApiLimit": {
-                "type": "number",
-                "default": 100,
-                "description": "Limit param for project list API"
-            },
-            "redmine2doc.issueListApiLimit": {
-                "type": "number",
-                "default": 100,
-                "description": "Limit param for issue list API"
-            },
-            "redmine2doc.issueOrderDirectionDesc": {
-                "type": "boolean",
-                "default": true,
-                "description": "Show issues in descending order"
-            }
+      "title": "Redmine2Doc Configuration",
+      "properties": {
+        "redmine2doc.redmineApiBaseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "URL to Redmine REST API"
+        },
+        "redmine2doc.redmineApiKey": {
+          "type": "string",
+          "default": "e4a3d8b1a0c739c4f15ad3e597cdfd0bd974e8a3",
+          "description": "Redmine API Key to get data"
+        },
+        "redmine2doc.templateDir": {
+          "type": "string",
+          "default": "templates/",
+          "description": "Directory path to Mustache templates"
+        },
+        "redmine2doc.resultFileType": {
+          "type": "string",
+          "default": "markdown",
+          "description": "File type of the result document"
+        },
+        "redmine2doc.projectListApiLimit": {
+          "type": "number",
+          "default": 100,
+          "description": "Limit param for project list API"
+        },
+        "redmine2doc.issueListApiLimit": {
+          "type": "number",
+          "default": 100,
+          "description": "Limit param for issue list API"
+        },
+        "redmine2doc.issueOrderDirectionDesc": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show issues in descending order"
+        },
+        "redmine2doc.timezone": {
+          "type": "string",
+          "default": "Etc/GMT",
+          "description": "Timezone"
+        },
+        "redmine2doc.datetimeFormat": {
+          "type": "string",
+          "default": "YYYY-MM-DD HH:mm",
+          "description": "Format string for date and time"
         }
+      }
     }
   },
   "scripts": {
@@ -82,6 +92,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "moment-timezone": "^0.5.13",
     "mu2": "^0.5.21"
   }
 }

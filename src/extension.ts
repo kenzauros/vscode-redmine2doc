@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as mu from 'mu2';
 import axios from 'axios';
+import * as moment from 'moment-timezone';
 
 // 設定の取得
 const config = vscode.workspace.getConfiguration('redmine2doc');
@@ -15,6 +16,8 @@ const PROJECT_LIST_API_LIMIT = config.projectListApiLimit;
 const ISSUE_LIST_API_LIMIT = config.issueListApiLimit;
 const ISSUE_ORDER_DIRECTION = config.issueOrderDirectionDesc ? "desc" : "asc";
 const ISSUE_TEMPLATE = 'issue.mustache';
+const TIMEZONE = config.timezone || 'Etc/GMT';
+const DATETIME_FORMAT = config.datetimeFormat || 'YYYY-MM-DD HH:mm';
 
 // API リクエスト用インスタンス初期化
 const request = axios.create({
@@ -130,6 +133,9 @@ async function _getIssueDetail(issueId: Number): Promise<any> {
             },
         });
     const issue = res.data.issue;
+    _convertTimestampTimezone(issue, 'created_on');
+    _convertTimestampTimezone(issue, 'updated_on');
+    issue.journals = issue.journals.map(x => _convertTimestampTimezone(x, 'created_on'));
     return issue;
 }
 
@@ -147,4 +153,9 @@ function _openCreateIssueDocument(templatePath: string, issue: any): Promise<any
                 reject(error);
             })
     });
+}
+
+function _convertTimestampTimezone(obj: any, prop: string) {
+    obj[prop] = moment(obj[prop]).tz(TIMEZONE).format(DATETIME_FORMAT);
+    return obj;
 }

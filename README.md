@@ -71,6 +71,8 @@ This extension contributes the following settings:
 * `redmine2doc.projectListApiLimit`: Limit param for project list API
 * `redmine2doc.issueListApiLimit`: Limit param for issue list API
 * `redmine2doc.issueOrderDirectionDesc`: Show issues in descending order
+* `redmine2doc.timezone`: Timezone
+* `redmine2doc.datetimeFormat`: Format string for date and time
 
 ## Known Issues
 
@@ -80,3 +82,7 @@ This extension contributes the following settings:
 ### 0.0.1
 
 Initial private release.
+
+### 0.0.2
+
+Add timezone conversion for issue and journal's timestamp.

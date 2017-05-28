@@ -70,9 +70,10 @@ This extension contributes the following settings:
 * `redmine2doc.resultFileType`: File type of the result document
 * `redmine2doc.projectListApiLimit`: Limit param for project list API
 * `redmine2doc.issueListApiLimit`: Limit param for issue list API
-* `redmine2doc.issueOrderDirectionDesc`: Show issues in descending order
+* `redmine2doc.issueOrderDirectionDesc`: If true, show issues in descending order
 * `redmine2doc.timezone`: Timezone
 * `redmine2doc.datetimeFormat`: Format string for date and time
+* `redmine2doc.excludePrivateNotes`: If true, exclude private notes from the issue's journals
 
 ## Known Issues
 
@@ -86,3 +87,7 @@ Initial private release.
 ### 0.0.2
 
 Add timezone conversion for issue and journal's timestamp.
+
+### 0.0.2
+
+Add an option to exclude private notes.

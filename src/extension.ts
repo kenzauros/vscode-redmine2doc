@@ -18,6 +18,7 @@ const ISSUE_ORDER_DIRECTION = config.issueOrderDirectionDesc ? "desc" : "asc";
 const ISSUE_TEMPLATE = 'issue.mustache';
 const TIMEZONE = config.timezone || 'Etc/GMT';
 const DATETIME_FORMAT = config.datetimeFormat || 'YYYY-MM-DD HH:mm';
+const EXCLUDE_PRIVATE_NOTES = config.excludePrivateNotes;
 
 // API リクエスト用インスタンス初期化
 const request = axios.create({
@@ -135,6 +136,10 @@ async function _getIssueDetail(issueId: Number): Promise<any> {
     const issue = res.data.issue;
     _convertTimestampTimezone(issue, 'created_on');
     _convertTimestampTimezone(issue, 'updated_on');
+    if (EXCLUDE_PRIVATE_NOTES) {
+        // exclude private notes from journals
+        issue.journals = issue.journals.filter(x => !x.private_notes);
+    }
     issue.journals = issue.journals.map(x => _convertTimestampTimezone(x, 'created_on'));
     return issue;
 }

@@ -2,7 +2,7 @@
   "name": "redmine2doc",
   "displayName": "Redmine2Doc",
   "description": "Convert Redmine data to to a templated document",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "kenzauros",
   "repository": {
     "type": "git",
@@ -73,6 +73,11 @@
           "type": "string",
           "default": "YYYY-MM-DD HH:mm",
           "description": "Format string for date and time"
+        },
+        "redmine2doc.excludePrivateNotes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Exclude private notes from the issue's journals"
         }
       }
     }
